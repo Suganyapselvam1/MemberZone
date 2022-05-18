@@ -1,22 +1,33 @@
-﻿
+﻿@model IEnumerable<RestaurantData.Model.Restaurant>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List";
 }
 
-<h2>Index</h2>
+<h2>List</h2>
 
-<div class="jumbotron">
-    <h1>ASP>NET</h1>
-    @DateTime.Now.Year
-    <div>
-        There are @Enumerable.Count(Model) number of restaurants in the db.
-    </div>
-</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
 
-<ul>
-    @foreach (var restaurant in Model)
-    {
-        <li>@restaurant.Name</li>
-    }
-</ul>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
 
+</table>

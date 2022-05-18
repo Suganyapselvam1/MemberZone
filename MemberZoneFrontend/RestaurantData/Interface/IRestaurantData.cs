@@ -11,6 +11,8 @@ namespace RestaurantData.Interface
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetAll();
-
+        Restaurant Get(int Id);
+        void Add(Restaurant restaurant);
+        void Update(Restaurant restaurant);
     }
 }

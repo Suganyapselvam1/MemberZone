@@ -17,9 +17,31 @@ namespace RestaurantData.Interface
                 new Restaurant{ID=3,Name="A2B Restaurant",Cuisine=CuisineType.Italian },
             };
         }
+
+        public void Add(Restaurant restaurant)
+        {
+            restaurants.Add(restaurant);
+            restaurant.ID = restaurants.Max(r => r.ID)+1;
+        }
+
+        public Restaurant Get(int Id)
+        {
+            return restaurants.FirstOrDefault(r => r.ID==Id);
+        }
+
         public IEnumerable<Restaurant> GetAll()
         {
             return restaurants.OrderBy(x => x.ID);
+        }
+
+        public void Update(Restaurant restaurant)
+        {
+            var existing = Get(restaurant.ID);
+            if (existing!=null)
+            {
+                existing.Name = restaurant.Name;
+                existing.Cuisine = restaurant.Cuisine;
+            }
         }
     }
 }
